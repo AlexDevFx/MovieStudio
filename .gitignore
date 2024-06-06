@@ -1,0 +1,22 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+appsettings.Development.json
+publish/
+# Logs and databases
+*.log
+*.sqlite
+#--------------------------
+# OS generated files
+.DS_Store?
+Thumbs.db
+#--------------------------
+# Other
+*.suo
+*.user
+packages
+.vs/
+.nuget
+.idea
