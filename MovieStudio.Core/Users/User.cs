@@ -37,10 +37,10 @@ public class User
     public string SecondName { get; set; }
     public string UserName { get; private set; }
     
-    public int? DirectorId { get; private set; }
+    public int? DirectorId { get; set; }
     public MovieDirector? Director { get; private set; }
     
-    public int? ActorId { get; private set; }
+    public int? ActorId { get; set; }
     public Actor? Actor { get; private set; }
 
     private readonly HashSet<UserRoleType> _roles;

@@ -12,9 +12,8 @@ public class RolesGuard
     
     public bool CanDeleteMovie(User user, Movie movie) => user.HasPermission(UserPerminssionType.DeleteMovie)
                                                            && movie.DirectorId == user.DirectorId;
-    
-    public bool CanReadMovie(User user, Movie movie) => user.HasPermission(UserPerminssionType.ReadMovie)
-                                                           && movie.DirectorId == user.DirectorId;
+
+    public bool CanReadMovie(User user, Movie movie) => user.HasPermission(UserPerminssionType.ReadMovie);
     
     public bool CanSendOffer(User user, Movie movie) => user.HasPermission(UserPerminssionType.SendOffer)
                                                          && ((movie.DirectorId == user.DirectorId && user.HasRole(UserRoleType.Director)) 

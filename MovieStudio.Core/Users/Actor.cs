@@ -5,7 +5,7 @@ namespace MovieStudio.Core.Users;
 
 public class Actor
 {
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public int UserId { get; private set; }
     public Address Address { get; private set; }
     public decimal Compensation { get; private set; }
