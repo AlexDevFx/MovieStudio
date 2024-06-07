@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.Data", "MovieSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.Core", "MovieStudio.Core\MovieStudio.Core.csproj", "{C7B1E41C-BC92-4F61-BD9D-34594681F5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.Test", "MovieStudio.Test\MovieStudio.Test.csproj", "{DD995AB5-52CB-44BD-9D9B-97541C698768}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.UnitTests", "MovieStudio.UnitTests\MovieStudio.UnitTests.csproj", "{DD995AB5-52CB-44BD-9D9B-97541C698768}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
