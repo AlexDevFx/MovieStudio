@@ -6,12 +6,12 @@ namespace MovieStudio.Test;
 public class RolesGuardTests
 {
     [Theory]
-    [InlineData(UserRoleType.Admin, false)]
+    [InlineData(UserRoleType.Admin, true)]
     [InlineData(UserRoleType.Director, true)]
     [InlineData(UserRoleType.Actor, false)]
-    public void CanCreateMovie_Allow_For_Director_Only(UserRoleType roleType, bool expected)
+    public void CanCreateMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
-        var createdUser = CreatedUserWithRole(roleType);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
         RolesGuard rolesGuard = new();
 
         bool result = rolesGuard.CanCreateMovie(createdUser);
@@ -20,12 +20,12 @@ public class RolesGuardTests
     }
     
     [Theory]
-    [InlineData(UserRoleType.Admin, false)]
+    [InlineData(UserRoleType.Admin, true)]
     [InlineData(UserRoleType.Director, true)]
     [InlineData(UserRoleType.Actor, false)]
-    public void CanDeleteMovie_Allow_For_Director_Only(UserRoleType roleType, bool expected)
+    public void CanDeleteMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
-        var createdUser = CreatedUserWithRole(roleType);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
         RolesGuard rolesGuard = new();
 
         bool result = rolesGuard.CanDeleteMovie(createdUser, 
@@ -42,15 +42,15 @@ public class RolesGuardTests
     }
     
     [Theory]
-    [InlineData(UserRoleType.Admin, false)]
+    [InlineData(UserRoleType.Admin, true)]
     [InlineData(UserRoleType.Director, true)]
     [InlineData(UserRoleType.Actor, false)]
-    public void CanUpdateMovie_Allow_For_Director_Only(UserRoleType roleType, bool expected)
+    public void CanUpdateMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
-        var createdUser = CreatedUserWithRole(roleType);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
         RolesGuard rolesGuard = new();
 
-        bool result = rolesGuard.CanManageMovie(createdUser, 
+        bool result = rolesGuard.CanUpdateMovie(createdUser, 
             new Movie(createdUser?.Director?.Id ?? -1, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -64,12 +64,12 @@ public class RolesGuardTests
     }
     
     [Theory]
-    [InlineData(UserRoleType.Admin, false)]
+    [InlineData(UserRoleType.Admin, true)]
     [InlineData(UserRoleType.Director, true)]
     [InlineData(UserRoleType.Actor, true)]
-    public void CanReadMovie_Allow_For_Director_Actor(UserRoleType roleType, bool expected)
+    public void CanReadMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
-        var createdUser = CreatedUserWithRole(roleType);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
         RolesGuard rolesGuard = new();
 
         bool result = rolesGuard.CanReadMovie(createdUser, 
@@ -89,9 +89,9 @@ public class RolesGuardTests
     [InlineData(UserRoleType.Admin, false)]
     [InlineData(UserRoleType.Director, true)]
     [InlineData(UserRoleType.Actor, true)]
-    public void CanSendOfferForMovie_Allow_For_Director_Actor(UserRoleType roleType, bool expected)
+    public void CanSendOfferForMovie_Allowed_For_Director_Actor(UserRoleType roleType, bool expected)
     {
-        var createdUser = CreatedUserWithRole(roleType);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
         RolesGuard rolesGuard = new();
 
         bool result = rolesGuard.CanSendOffer(createdUser, 
@@ -106,33 +106,87 @@ public class RolesGuardTests
         
         Assert.Equal(expected, result);
     }
-
-    private User? CreatedUserWithRole(UserRoleType roleType)
+    
+    [Fact]
+    public void CanSendOfferForMovie_Allowed_Director_For_Owned()
     {
-        var userBuilder = new UsersBuilder();
+        var createdUser = TestUserBuilder.CreatedUserWithRole(UserRoleType.Director);
+        RolesGuard rolesGuard = new();
 
-        var newUser = new NewUser("Bill", "Walt", "username@", roleType);
-        User? createdUser = userBuilder.Create(newUser);
-
-        Assert.NotNull(createdUser);
+        bool result = rolesGuard.CanSendOffer(createdUser, 
+            new Movie(0, 
+                "New Movie", 
+                "Something interesting about space", 
+                100_000_000, 
+                new []{ new Genre() }, 
+                TimeSpan.FromHours(2.5), 
+                DateTime.Now, 
+                DateTime.Now.AddMonths(4)));
         
-        switch (roleType)
-        {
-            case UserRoleType.Director:
-                createdUser.Director.Id = RandomId();
-                createdUser.DirectorId = createdUser.Director.Id;
-                break;
-            case UserRoleType.Actor:
-                createdUser.Actor.Id = RandomId();
-                createdUser.ActorId = createdUser.Actor.Id;
-                break;
-        }
-        
-        return createdUser;
+        Assert.False(result);
     }
-
-    private int RandomId()
+    
+    [Theory]
+    [InlineData(UserRoleType.Admin, true)]
+    [InlineData(UserRoleType.Director, true)]
+    [InlineData(UserRoleType.Actor, true)]
+    public void CanReadMoviesList_Allowed_For_Director_Actor_Admin(UserRoleType roleType, bool expected)
     {
-        return new Random(DateTime.Now.Millisecond).Next(1, int.MaxValue);
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
+        RolesGuard rolesGuard = new();
+
+        bool result = rolesGuard.CanReadMoviesList(createdUser);
+        
+        Assert.Equal(expected, result);
+    }
+    
+    [Theory]
+    [InlineData(UserRoleType.Admin, true)]
+    [InlineData(UserRoleType.Director, false)]
+    [InlineData(UserRoleType.Actor, true)]
+    public void CanReadMovie_Allowed_Of_Another_Director(UserRoleType roleType, bool expected)
+    {
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
+        RolesGuard rolesGuard = new();
+
+        bool result = rolesGuard.CanReadMovie(createdUser, 
+            new Movie(0, 
+                "New Movie", 
+                "Something interesting about space", 
+                100_000_000, 
+                new []{ new Genre() }, 
+                TimeSpan.FromHours(2.5), 
+                DateTime.Now, 
+                DateTime.Now.AddMonths(4)));
+        
+        Assert.Equal(expected,result);
+    }
+    
+    [Theory]
+    [InlineData(UserRoleType.Admin, true)]
+    [InlineData(UserRoleType.Director, false)]
+    [InlineData(UserRoleType.Actor, true)]
+    public void CanReadUserData_Allowed_For_Actor(UserRoleType roleType, bool expected)
+    {
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
+        RolesGuard rolesGuard = new();
+
+        bool result = rolesGuard.CanReadUser(createdUser);
+        
+        Assert.Equal(expected, result);
+    }
+    
+    [Theory]
+    [InlineData(UserRoleType.Admin, true)]
+    [InlineData(UserRoleType.Director, false)]
+    [InlineData(UserRoleType.Actor, true)]
+    public void CanUpdateUserData_Allowed_For_Actor(UserRoleType roleType, bool expected)
+    {
+        var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
+        RolesGuard rolesGuard = new();
+
+        bool result = rolesGuard.CanUpdateUser(createdUser);
+        
+        Assert.Equal(expected, result);
     }
 }

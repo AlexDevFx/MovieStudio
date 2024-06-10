@@ -32,7 +32,7 @@ public class User
         _roles = new HashSet<UserRoleType> { UserRoleType.Actor };
     }
 
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public string FirstName { get; set; }
     public string SecondName { get; set; }
     public string UserName { get; private set; }

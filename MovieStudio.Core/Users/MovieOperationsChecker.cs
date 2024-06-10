@@ -56,7 +56,7 @@ public class MovieOperationsChecker
             return new("Movie is not found");
         }
 
-        if (!IsUserAllowPerform(u => _rolesGuard.CanManageMovie(u, movie)))
+        if (!IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie)))
         {
             return new("You can not update movie");
         }
@@ -79,7 +79,7 @@ public class MovieOperationsChecker
     
     public string? CanStartFilming(Movie movie, Func<DateTime> currentTime)
     {
-        IsUserAllowPerform(u => _rolesGuard.CanManageMovie(u, movie));
+        IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie));
         
         if (movie.Status != MovieStatus.NotStarted)
         {

@@ -2,13 +2,27 @@
 
 public enum UserPerminssionType
 {
+    CreateUser,
+    ReadUser,
+    UpdateUser,
+    DeleteUser,
     CreateDirector,
+    ReadDirector,
+    UpdateDirector,
+    DeleteDirector,
     CreateActor,
+    ReadActor,
+    UpdateActor,
+    DeleteActor,
     CreateMovie,
-    ManageMovie,
+    UpdateMovie,
     DeleteMovie,
     ReadMovie,
     SendOffer,
     AcceptOffer,
     RefuseOffer,
+    CreateGenre,
+    ReadGenre,
+    UpdateGenre,
+    DeleteGenre
 }
