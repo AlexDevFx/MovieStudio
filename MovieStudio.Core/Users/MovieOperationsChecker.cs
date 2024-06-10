@@ -7,20 +7,20 @@ public class MovieOperationsChecker
 {
     private readonly IUserRepository _userRepository;
     private readonly IAuthorizedUser _authorizedUser;
-    private readonly RolesGuard _rolesGuard;
+    private readonly Users _users;
 
     public MovieOperationsChecker(IUserRepository userRepository,
         IAuthorizedUser authorizedUser,
-        RolesGuard rolesGuard)
+        Users users)
     {
-        _rolesGuard = rolesGuard;
+        _users = users;
         _authorizedUser = authorizedUser;
         _userRepository = userRepository;
     }
 
     public string? CanCreateMovie(NewMovie newMovie)
     {
-        if (!IsUserAllowPerform(_rolesGuard.CanCreateMovie))
+        if (!IsUserAllowPerform(_users.CanCreateMovie))
         {
             return new("Movie creation is not allowed");
         }
@@ -41,7 +41,7 @@ public class MovieOperationsChecker
             return new("Movie is not found");
         }
 
-        if(!IsUserAllowPerform(u => _rolesGuard.CanDeleteMovie(u, movie)))
+        if(!IsUserAllowPerform(u => _users.CanDeleteMovie(u, movie)))
         {
             return new("Movie removing is forbidden");
         }
@@ -56,7 +56,7 @@ public class MovieOperationsChecker
             return new("Movie is not found");
         }
 
-        if (!IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie)))
+        if (!IsUserAllowPerform(u => _users.CanUpdateMovie(u, movie)))
         {
             return new("You can not update movie");
         }
@@ -67,7 +67,7 @@ public class MovieOperationsChecker
     
     public string? CanSendOffer(Movie movie, Actor actor)
     {
-        IsUserAllowPerform(u => _rolesGuard.CanSendOffer(u, movie));
+        IsUserAllowPerform(u => _users.CanSendOffer(u, movie));
         
         if (movie.TotalSpentForCompensations + actor.Compensation >= movie.Budget)
         {
@@ -79,7 +79,7 @@ public class MovieOperationsChecker
     
     public string? CanStartFilming(Movie movie, Func<DateTime> currentTime)
     {
-        IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie));
+        IsUserAllowPerform(u => _users.CanUpdateMovie(u, movie));
         
         if (movie.Status != MovieStatus.NotStarted)
         {

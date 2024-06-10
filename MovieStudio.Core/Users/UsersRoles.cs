@@ -2,46 +2,51 @@
 
 public static class UsersRoles
 {
-    public static Dictionary<UserRoleType, UserPerminssionType[]> RolesPermissions = new()
+    public static Dictionary<UserRoleType, UserPermissionType[]> RolesPermissions = new()
     {
         { UserRoleType.Admin, new [] 
         { 
-            UserPerminssionType.CreateDirector, 
-            UserPerminssionType.ReadDirector, 
-            UserPerminssionType.UpdateDirector, 
-            UserPerminssionType.CreateActor, 
-            UserPerminssionType.ReadActor,
-            UserPerminssionType.UpdateActor,
-            UserPerminssionType.DeleteActor,
-            UserPerminssionType.CreateUser,
-            UserPerminssionType.UpdateUser,
-            UserPerminssionType.ReadUser,
-            UserPerminssionType.DeleteUser,
-            UserPerminssionType.CreateMovie,
-            UserPerminssionType.ReadMovie,
-            UserPerminssionType.UpdateMovie,
-            UserPerminssionType.DeleteMovie,
-            UserPerminssionType.CreateGenre,
-            UserPerminssionType.ReadGenre,
-            UserPerminssionType.UpdateGenre,
-            UserPerminssionType.DeleteGenre
+            UserPermissionType.CreateDirector, 
+            UserPermissionType.ReadDirector, 
+            UserPermissionType.UpdateDirector, 
+            UserPermissionType.DeleteDirector,
+            UserPermissionType.CreateActor, 
+            UserPermissionType.ReadActor,
+            UserPermissionType.UpdateActor,
+            UserPermissionType.DeleteActor,
+            UserPermissionType.CreateUser,
+            UserPermissionType.UpdateUser,
+            UserPermissionType.ReadUser,
+            UserPermissionType.DeleteUser,
+            UserPermissionType.CreateMovie,
+            UserPermissionType.ReadMovie,
+            UserPermissionType.UpdateMovie,
+            UserPermissionType.DeleteMovie,
+            UserPermissionType.CreateGenre,
+            UserPermissionType.ReadGenre,
+            UserPermissionType.UpdateGenre,
+            UserPermissionType.DeleteGenre
         }},
         { UserRoleType.Actor, new []
         {
-            UserPerminssionType.ReadMovie, 
-            UserPerminssionType.AcceptOffer, 
-            UserPerminssionType.RefuseOffer, 
-            UserPerminssionType.SendOffer, 
-            UserPerminssionType.ReadUser, 
-            UserPerminssionType.UpdateUser
+            UserPermissionType.ReadMovie, 
+            UserPermissionType.AcceptOffer, 
+            UserPermissionType.RefuseOffer, 
+            UserPermissionType.SendOffer, 
+            UserPermissionType.ReadUser, 
+            UserPermissionType.UpdateUser,
+            UserPermissionType.ReadActor,
+            UserPermissionType.UpdateActor
         }},
         { UserRoleType.Director, new []
         {
-            UserPerminssionType.CreateMovie, 
-            UserPerminssionType.UpdateMovie, 
-            UserPerminssionType.DeleteMovie, 
-            UserPerminssionType.ReadMovie, 
-            UserPerminssionType.SendOffer
+            UserPermissionType.CreateMovie, 
+            UserPermissionType.UpdateMovie, 
+            UserPermissionType.DeleteMovie, 
+            UserPermissionType.ReadMovie, 
+            UserPermissionType.SendOffer,
+            UserPermissionType.ReadDirector,
+            UserPermissionType.ReadUser
         }}
     };
 }

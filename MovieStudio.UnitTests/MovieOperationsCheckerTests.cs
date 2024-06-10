@@ -21,7 +21,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new RolesGuard());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",
@@ -44,7 +44,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new RolesGuard());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",
@@ -67,7 +67,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new RolesGuard());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",

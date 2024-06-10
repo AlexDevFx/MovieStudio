@@ -1,6 +1,6 @@
 ﻿namespace MovieStudio.Core.Users;
 
-public enum UserPerminssionType
+public enum UserPermissionType
 {
     CreateUser,
     ReadUser,

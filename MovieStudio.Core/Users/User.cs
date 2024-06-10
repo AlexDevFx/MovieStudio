@@ -44,7 +44,7 @@ public class User
     public Actor? Actor { get; private set; }
 
     private readonly HashSet<UserRoleType> _roles;
-    public bool HasPermission(UserPerminssionType permission)
+    public bool HasPermission(UserPermissionType permission)
     {
         foreach (var role in _roles)
         {
