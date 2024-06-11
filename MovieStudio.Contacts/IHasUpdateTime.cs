@@ -1,4 +1,4 @@
-﻿namespace MovieStudio.Core.Entities;
+﻿namespace MovieStudio.Contacts;
 
 public interface IHasUpdateTime
 {

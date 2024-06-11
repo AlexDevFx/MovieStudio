@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test;
 

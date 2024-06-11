@@ -1,8 +1,9 @@
-﻿using MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
 
-public class UsersTests
+public class RolesGuardTests
 {
     [Theory]
     [InlineData(UserRoleType.Admin, true)]
@@ -11,9 +12,9 @@ public class UsersTests
     public void CanCreateUser_Allowed_For_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanCreateUser(createdUser);
+        bool result = rolesGuard.CanCreateUser(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -26,9 +27,9 @@ public class UsersTests
     public void CanReadUser_Allowed_For_Actor_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadUser(createdUser);
+        bool result = rolesGuard.CanReadUser(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -40,9 +41,9 @@ public class UsersTests
     public void CanUpdateUserData_Allowed_For_Actor_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanUpdateUser(createdUser);
+        bool result = rolesGuard.CanUpdateUser(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -54,9 +55,9 @@ public class UsersTests
     public void CanDeleteUser_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanDeleteUser(createdUser);
+        bool result = rolesGuard.CanDeleteUser(createdUser);
         
         Assert.Equal(expected, result);
     }

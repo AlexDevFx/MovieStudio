@@ -1,4 +1,4 @@
-﻿using MovieStudio.Core.Entities;
+﻿using MovieStudio.Contacts;
 using MovieStudio.Core.Users;
 
 namespace MovieStudio.Core.Movies;

@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
 
@@ -11,9 +12,9 @@ public class ActorsTests
     public void CanCreateActor_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanCreateActor(createdUser);
+        bool result = rolesGuard.CanCreateActor(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -26,9 +27,9 @@ public class ActorsTests
     public void CanReadActor_Allowed_For_Admin_Actor(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadActor(createdUser);
+        bool result = rolesGuard.CanReadActor(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -40,9 +41,9 @@ public class ActorsTests
     public void CanUpdateActor_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanUpdateActor(createdUser);
+        bool result = rolesGuard.CanUpdateActor(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -54,9 +55,9 @@ public class ActorsTests
     public void CanDeleteActor_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanDeleteActor(createdUser);
+        bool result = rolesGuard.CanDeleteActor(createdUser);
         
         Assert.Equal(expected, result);
     }

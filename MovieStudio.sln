@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.Core", "MovieSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.UnitTests", "MovieStudio.UnitTests\MovieStudio.UnitTests.csproj", "{DD995AB5-52CB-44BD-9D9B-97541C698768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStudio.Contacts", "MovieStudio.Contacts\MovieStudio.Contacts.csproj", "{A2779B3E-580D-49FD-AA4A-D1CB1689301B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{DD995AB5-52CB-44BD-9D9B-97541C698768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD995AB5-52CB-44BD-9D9B-97541C698768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD995AB5-52CB-44BD-9D9B-97541C698768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2779B3E-580D-49FD-AA4A-D1CB1689301B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2779B3E-580D-49FD-AA4A-D1CB1689301B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2779B3E-580D-49FD-AA4A-D1CB1689301B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2779B3E-580D-49FD-AA4A-D1CB1689301B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

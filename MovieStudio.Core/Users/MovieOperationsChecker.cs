@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Contracts;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Contracts;
 using MovieStudio.Core.Movies;
 
 namespace MovieStudio.Core.Users;
@@ -7,22 +8,22 @@ public class MovieOperationsChecker
 {
     private readonly IUserRepository _userRepository;
     private readonly IAuthorizedUser _authorizedUser;
-    private readonly Users _users;
+    private readonly RolesGuard _rolesGuard;
 
     public MovieOperationsChecker(IUserRepository userRepository,
         IAuthorizedUser authorizedUser,
-        Users users)
+        RolesGuard rolesGuard)
     {
-        _users = users;
+        _rolesGuard = rolesGuard;
         _authorizedUser = authorizedUser;
         _userRepository = userRepository;
     }
 
     public string? CanCreateMovie(NewMovie newMovie)
     {
-        if (!IsUserAllowPerform(_users.CanCreateMovie))
+        if (!IsUserAllowPerform(_rolesGuard.CanCreateMovie))
         {
-            return new("Movie creation is not allowed");
+            return "Movie creation is not allowed";
         }
         
         var errors = newMovie.Validate();
@@ -38,12 +39,12 @@ public class MovieOperationsChecker
     {
         if (movie == null)
         {
-            return new("Movie is not found");
+            return "Movie is not found";
         }
 
-        if(!IsUserAllowPerform(u => _users.CanDeleteMovie(u, movie)))
+        if(!IsUserAllowPerform(u => _rolesGuard.CanDeleteMovie(u, movie)))
         {
-            return new("Movie removing is forbidden");
+            return "Movie removing is forbidden";
         }
 
         return null;
@@ -53,12 +54,12 @@ public class MovieOperationsChecker
     {
         if (movie == null)
         {
-            return new("Movie is not found");
+            return "Movie is not found";
         }
 
-        if (!IsUserAllowPerform(u => _users.CanUpdateMovie(u, movie)))
+        if (!IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie)))
         {
-            return new("You can not update movie");
+            return "You can not update movie";
         }
 
 
@@ -67,11 +68,11 @@ public class MovieOperationsChecker
     
     public string? CanSendOffer(Movie movie, Actor actor)
     {
-        IsUserAllowPerform(u => _users.CanSendOffer(u, movie));
+        IsUserAllowPerform(u => _rolesGuard.CanSendOffer(u, movie));
         
         if (movie.TotalSpentForCompensations + actor.Compensation >= movie.Budget)
         {
-            return new("The movie budget doesn't allow to sent offer this actor");
+            return "The movie budget doesn't allow to sent offer this actor";
         }
 
         return null;
@@ -79,26 +80,36 @@ public class MovieOperationsChecker
     
     public string? CanStartFilming(Movie movie, Func<DateTime> currentTime)
     {
-        IsUserAllowPerform(u => _users.CanUpdateMovie(u, movie));
+        IsUserAllowPerform(u => _rolesGuard.CanUpdateMovie(u, movie));
         
         if (movie.Status != MovieStatus.NotStarted)
         {
-            return new("You can start filming a movie with status [Not Started] only");
+            return "You can start filming a movie with status [Not Started] only";
         }
         
         if (movie.TotalSpentForCompensations > movie.Budget)
         {
-            return new("Requested compensation is greater than movie budget");
+            return "Requested compensation is greater than movie budget";
         }
 
         if (!movie.ApprovedActors.Any())
         {
-            return new("You don have any actors for filming");
+            return "You don have any actors for filming";
         }
 
         if (movie.Started > currentTime())
         {
-            return new("You can start before planned date");
+            return "You can start before planned date";
+        }
+
+        return null;
+    }
+
+    public string? ReadMoviesList()
+    {
+        if (!IsUserAllowPerform(_rolesGuard.CanReadMoviesList))
+        {
+            return "You can not list movies";
         }
 
         return null;

@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
 
@@ -11,9 +12,9 @@ public class GenreTests
     public void CanCreateGenre_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanCreateGenre(createdUser);
+        bool result = rolesGuard.CanCreateGenre(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -26,9 +27,9 @@ public class GenreTests
     public void CanReadGenre_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadGenre(createdUser);
+        bool result = rolesGuard.CanReadGenre(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -40,9 +41,9 @@ public class GenreTests
     public void CanUpdateGenre_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanUpdateGenre(createdUser);
+        bool result = rolesGuard.CanUpdateGenre(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -54,9 +55,9 @@ public class GenreTests
     public void CanDeleteGenre_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanDeleteGenre(createdUser);
+        bool result = rolesGuard.CanDeleteGenre(createdUser);
         
         Assert.Equal(expected, result);
     }

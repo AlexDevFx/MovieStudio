@@ -1,4 +1,6 @@
-﻿namespace MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+
+namespace MovieStudio.Core.Users;
 
 public static class UsersRoles
 {

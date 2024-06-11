@@ -1,8 +1,9 @@
-﻿using MovieStudio.Core.Movies;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Movies;
 
 namespace MovieStudio.Core.Users;
 
-public class Users
+public class RolesGuard
 {
     public bool CanCreateMovie(User user) => user.HasPermission(UserPermissionType.CreateMovie);
 

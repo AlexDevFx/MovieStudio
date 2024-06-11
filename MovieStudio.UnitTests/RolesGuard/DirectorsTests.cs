@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Users;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
 
@@ -11,9 +12,9 @@ public class DirectorsTests
     public void CanCreateDirector_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanCreateDirector(createdUser);
+        bool result = rolesGuard.CanCreateDirector(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -26,9 +27,9 @@ public class DirectorsTests
     public void CanReadDirector_Allowed_For_Admin_Actor(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadDirector(createdUser);
+        bool result = rolesGuard.CanReadDirector(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -40,9 +41,9 @@ public class DirectorsTests
     public void CanUpdateDirector_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanUpdateDirector(createdUser);
+        bool result = rolesGuard.CanUpdateDirector(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -54,9 +55,9 @@ public class DirectorsTests
     public void CanDeleteDirector_Allowed_For_Admin_Only(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanDeleteDirector(createdUser);
+        bool result = rolesGuard.CanDeleteDirector(createdUser);
         
         Assert.Equal(expected, result);
     }

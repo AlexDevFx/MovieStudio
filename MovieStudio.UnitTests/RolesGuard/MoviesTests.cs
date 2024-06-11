@@ -1,4 +1,5 @@
-﻿using MovieStudio.Core.Movies;
+﻿using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Movies;
 using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
@@ -12,9 +13,9 @@ public class MoviesTests
     public void CanCreateMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanCreateMovie(createdUser);
+        bool result = rolesGuard.CanCreateMovie(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -26,9 +27,9 @@ public class MoviesTests
     public void CanDeleteMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanDeleteMovie(createdUser, 
+        bool result = rolesGuard.CanDeleteMovie(createdUser, 
             new Movie(createdUser?.Director?.Id ?? -1, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -48,9 +49,9 @@ public class MoviesTests
     public void CanUpdateMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanUpdateMovie(createdUser, 
+        bool result = rolesGuard.CanUpdateMovie(createdUser, 
             new Movie(createdUser?.Director?.Id ?? -1, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -70,9 +71,9 @@ public class MoviesTests
     public void CanReadMovie_Allowed_For_Director_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadMovie(createdUser, 
+        bool result = rolesGuard.CanReadMovie(createdUser, 
             new Movie(createdUser?.Director?.Id ?? -1, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -92,9 +93,9 @@ public class MoviesTests
     public void CanSendOfferForMovie_Allowed_For_Director_Actor(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanSendOffer(createdUser, 
+        bool result = rolesGuard.CanSendOffer(createdUser, 
             new Movie(createdUser?.Director?.Id ?? -1, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -111,9 +112,9 @@ public class MoviesTests
     public void CanSendOfferForMovie_Allowed_Director_For_Owned()
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(UserRoleType.Director);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanSendOffer(createdUser, 
+        bool result = rolesGuard.CanSendOffer(createdUser, 
             new Movie(0, 
                 "New Movie", 
                 "Something interesting about space", 
@@ -133,9 +134,9 @@ public class MoviesTests
     public void CanReadMoviesList_Allowed_For_Director_Actor_Admin(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadMoviesList(createdUser);
+        bool result = rolesGuard.CanReadMoviesList(createdUser);
         
         Assert.Equal(expected, result);
     }
@@ -147,9 +148,9 @@ public class MoviesTests
     public void CanReadMovie_Allowed_Of_Another_Director(UserRoleType roleType, bool expected)
     {
         var createdUser = TestUserBuilder.CreatedUserWithRole(roleType);
-        Users users = new();
+        Core.Users.RolesGuard rolesGuard = new();
 
-        bool result = users.CanReadMovie(createdUser, 
+        bool result = rolesGuard.CanReadMovie(createdUser, 
             new Movie(0, 
                 "New Movie", 
                 "Something interesting about space", 

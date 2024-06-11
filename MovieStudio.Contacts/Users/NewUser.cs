@@ -1,4 +1,4 @@
-﻿namespace MovieStudio.Core.Users;
+﻿namespace MovieStudio.Contacts.Users;
 
 public record NewUser(string FirstName, string SecondName, string UserName, UserRoleType RoleType)
 {

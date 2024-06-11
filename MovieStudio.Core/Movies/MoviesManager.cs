@@ -1,4 +1,6 @@
 ﻿using Mapster;
+using MovieStudio.Contacts.Movies;
+using MovieStudio.Contacts.Users;
 using MovieStudio.Core.Contracts;
 using MovieStudio.Core.Operations;
 using MovieStudio.Core.Users;
@@ -10,11 +12,14 @@ public class MoviesManager
     private readonly IClockProvider _clockProvider;
     private readonly IMoviesRepository _moviesRepository;
     private readonly MovieOperationsChecker _movieOperationsChecker;
+    private readonly IAuthorizedUser _authorizedUser;
 
     public MoviesManager(IClockProvider clockProvider, 
         IMoviesRepository moviesRepository,
-        MovieOperationsChecker movieOperationsChecker)
+        MovieOperationsChecker movieOperationsChecker,
+        IAuthorizedUser authorizedUser)
     {
+        _authorizedUser = authorizedUser;
         _movieOperationsChecker = movieOperationsChecker;
         _moviesRepository = moviesRepository;
         _clockProvider = clockProvider;

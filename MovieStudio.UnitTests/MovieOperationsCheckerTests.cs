@@ -1,4 +1,5 @@
 ﻿using Moq;
+using MovieStudio.Contacts.Users;
 using MovieStudio.Core;
 using MovieStudio.Core.Contracts;
 using MovieStudio.Core.Movies;
@@ -21,7 +22,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Core.Users.RolesGuard());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",
@@ -44,7 +45,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Core.Users.RolesGuard());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",
@@ -67,7 +68,7 @@ public class MovieOperationsCheckerTests
         authorizedUserMock.Setup(e => e.UserId)
             .Returns(user.Id);
         
-        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Users());
+        var movieOperationChecker = new MovieOperationsChecker(_dbStore, authorizedUserMock.Object, new Core.Users.RolesGuard());
 
         string? error = movieOperationChecker.CanCreateMovie(new NewMovie(user.DirectorId ?? -1,
             "New Era",

@@ -1,8 +1,10 @@
-﻿using MovieStudio.Core.Movies;
+﻿using MovieStudio.Contacts;
+using MovieStudio.Contacts.Users;
+using MovieStudio.Core.Movies;
 
 namespace MovieStudio.Core.Users;
 
-public class User
+public class User: IHasUpdateTime
 {
     public User(string firstName, string secondName, string userName, HashSet<UserRoleType> roles)
     {
@@ -59,4 +61,5 @@ public class User
     }
 
     public bool HasRole(UserRoleType role) => _roles.Contains(role);
+    public DateTime? Updated { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace MovieStudio.Core.Users;
+﻿namespace MovieStudio.Contacts.Users;
 
 public enum UserPermissionType
 {
