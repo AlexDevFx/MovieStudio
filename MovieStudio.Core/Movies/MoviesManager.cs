@@ -30,8 +30,14 @@ public class MoviesManager
         string? error = _movieOperationsChecker.CanCreateMovie(movie);
         if (error != null) return new(error);
 
-        _moviesRepository.Create(new Movie(movie.DirectorId, movie.Title, movie.Description, movie.Budget, movie.Genres, movie.Duration,
-            movie.StartFilming, movie.EndFilming));
+        _moviesRepository.Create(new Movie(movie.DirectorId, 
+            movie.Title, 
+            movie.Description, 
+            movie.Budget, 
+            movie.Genres, 
+            movie.Duration,
+            movie.StartFilming, 
+            movie.EndFilming));
         
         return new();
     }

@@ -6,13 +6,17 @@ namespace MovieStudio.Core.Movies;
 
 public class Movie: IHasUpdateTime
 {
-    public Movie(int directorId, string title, string description, decimal budget, MovieGenre[] genres, TimeSpan duration, DateTime startFilming, DateTime endFilming)
+    public Movie(int directorId, string title, string description, decimal budget, int[] genres, TimeSpan duration, DateTime startFilming, DateTime endFilming)
     {
         DirectorId = directorId;
         Title = title;
         Description = description;
         Budget = budget;
-        Genres = genres;
+        Genres = genres.Select(e => new MovieGenre
+        {
+            Movie = this,
+            GenreId = e
+        }).ToList();
         Duration = duration;
         Started = startFilming;
         Ended = endFilming;

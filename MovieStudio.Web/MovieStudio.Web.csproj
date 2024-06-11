@@ -7,4 +7,14 @@
         <RootNamespace>MovieStudio</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MovieStudio.Contacts\MovieStudio.Contacts.csproj" />
+      <ProjectReference Include="..\MovieStudio.Core\MovieStudio.Core.csproj" />
+      <ProjectReference Include="..\MovieStudio.Data\MovieStudio.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.31" />
+    </ItemGroup>
+
 </Project>

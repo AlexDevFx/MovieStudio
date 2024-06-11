@@ -6,5 +6,7 @@ public interface IAuthorizedUser
    int? DirectorId { get; }
    int? ActorId { get; }
 
-   public bool HasRole(UserRoleType roleType);
+   HashSet<UserRoleType> Roles { get; }
+
+   public void Init(int userId, int? directorId, int? actorId, HashSet<UserRoleType>? roleTypes);
 }

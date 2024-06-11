@@ -27,7 +27,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new MovieGenre() },
+            new[] { 1 },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));
@@ -50,7 +50,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new MovieGenre() },
+            new[] { 1 },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));
@@ -73,7 +73,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new MovieGenre() },
+            new[] { 1 },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));

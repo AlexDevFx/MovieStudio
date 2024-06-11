@@ -1,6 +1,5 @@
 ﻿using MovieStudio.Contacts.Users;
 using MovieStudio.Core.Movies;
-using MovieStudio.Core.Users;
 
 namespace MovieStudio.Test.RolesGuard;
 
@@ -34,7 +33,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
             DateTime.Now.AddMonths(4)));
@@ -56,7 +55,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -78,7 +77,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -100,7 +99,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -119,7 +118,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -155,7 +154,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new MovieGenre() }, 
+                new []{ 1 }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));

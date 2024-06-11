@@ -1,8 +1,7 @@
-﻿using MovieStudio.Core.Movies;
-
+﻿
 namespace MovieStudio.Core;
 
-public record NewMovie(int DirectorId, string Title, string Description, decimal Budget, MovieGenre[] Genres, TimeSpan Duration, DateTime StartFilming, DateTime EndFilming)
+public record NewMovie(int DirectorId, string Title, string Description, decimal Budget, IEnumerable<int> Genres, TimeSpan Duration, DateTime StartFilming, DateTime EndFilming)
 {
     public IEnumerable<string> Validate()
     {

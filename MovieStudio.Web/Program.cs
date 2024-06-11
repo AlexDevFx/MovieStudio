@@ -1,7 +1,15 @@
+using MovieStudio.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddApplicationServices();
+
+DependencyExtensions.AddEntitiesMapping();
+
+builder.Services.SetupAuthorization(builder.Configuration);
 
 var app = builder.Build();
 
