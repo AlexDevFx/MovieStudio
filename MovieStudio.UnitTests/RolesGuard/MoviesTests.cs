@@ -34,7 +34,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
             DateTime.Now.AddMonths(4)));
@@ -56,7 +56,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -78,7 +78,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -100,7 +100,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -119,7 +119,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));
@@ -155,7 +155,7 @@ public class MoviesTests
                 "New Movie", 
                 "Something interesting about space", 
                 100_000_000, 
-                new []{ new Genre() }, 
+                new []{ new MovieGenre() }, 
                 TimeSpan.FromHours(2.5), 
                 DateTime.Now, 
                 DateTime.Now.AddMonths(4)));

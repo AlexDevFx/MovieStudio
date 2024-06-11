@@ -38,7 +38,7 @@ public static class MoviesSpecifications
         
         return fullExpression as Expression<Func<Movie, bool>>;
     }
-    public static Expression<Func<Movie, bool>> ByGenre(int id) => m => m.Genres.Any(g => g.Id == id);
+    public static Expression<Func<Movie, bool>> ByGenre(int id) => m => m.Genres.Any(g => g.GenreId == id);
 
     public static Expression<Func<Movie, bool>> ByBudget(decimal budget) =>
         m => Math.Abs(m.Budget - budget) <= 0.001m;

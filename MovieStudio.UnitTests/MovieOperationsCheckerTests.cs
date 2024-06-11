@@ -1,7 +1,6 @@
 ﻿using Moq;
 using MovieStudio.Contacts.Users;
 using MovieStudio.Core;
-using MovieStudio.Core.Contracts;
 using MovieStudio.Core.Movies;
 using MovieStudio.Core.Users;
 
@@ -9,7 +8,7 @@ namespace MovieStudio.Test;
 
 public class MovieOperationsCheckerTests
 {
-    private readonly DbStore _dbStore = new DbStore();
+    private readonly DbStore _dbStore = new ();
 
     #region Create Movie
 
@@ -28,7 +27,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new Genre() },
+            new[] { new MovieGenre() },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));
@@ -51,7 +50,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new Genre() },
+            new[] { new MovieGenre() },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));
@@ -74,7 +73,7 @@ public class MovieOperationsCheckerTests
             "New Era",
             "The movie about history",
             35_000_000,
-            new[] { new Genre() },
+            new[] { new MovieGenre() },
             TimeSpan.FromHours(3),
             DateTime.Now,
             DateTime.Now.AddMonths(6)));

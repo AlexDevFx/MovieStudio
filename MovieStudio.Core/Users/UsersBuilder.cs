@@ -9,7 +9,7 @@ public class UsersBuilder
         return newUser.RoleType switch
         {
             UserRoleType.Actor => new User(newUser.FirstName, newUser.SecondName, newUser.UserName, new Actor()),
-            UserRoleType.Director => new User(newUser.FirstName, newUser.SecondName, newUser.UserName, new MovieDirector()),
+            UserRoleType.Director => new User(newUser.FirstName, newUser.SecondName, newUser.UserName, new Director()),
             UserRoleType.Admin => new User(newUser.FirstName, newUser.SecondName, newUser.UserName, new HashSet<UserRoleType> { UserRoleType.Admin }),
             _ => null
         };

@@ -14,7 +14,7 @@ public class User: IHasUpdateTime
         _roles = roles;
     }
     
-    public User(string firstName, string secondName, string userName, MovieDirector director)
+    public User(string firstName, string secondName, string userName, Director director)
     {
         FirstName = firstName;
         SecondName = secondName;
@@ -39,8 +39,10 @@ public class User: IHasUpdateTime
     public string SecondName { get; set; }
     public string UserName { get; private set; }
     
+    public string PasswordHash { get; private set; }
+    
     public int? DirectorId { get; set; }
-    public MovieDirector? Director { get; private set; }
+    public Director? Director { get; private set; }
     
     public int? ActorId { get; set; }
     public Actor? Actor { get; private set; }

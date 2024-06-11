@@ -11,9 +11,14 @@ public class Actor: IHasUpdateTime
     public User User { get; private set; }
     public Address Address { get; private set; }
     public decimal Compensation { get; private set; }
-    
-    public Collection<Movie> Movies { get; private set; }
+
+    public List<Movie> Movies => Offers
+        .Where(e => _movieStatuses.Contains(e.Status))
+        .Select(e => e.Movie)
+        .ToList();
     
     public Collection<MovieOffer> Offers { get; private set; }
     public DateTime? Updated { get; set; }
+
+    private readonly OfferStatus[] _movieStatuses = new[] { OfferStatus.Accepted, OfferStatus.Approved };
 }

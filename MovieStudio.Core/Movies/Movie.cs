@@ -1,11 +1,12 @@
-﻿using MovieStudio.Contacts;
+﻿using System.Collections.ObjectModel;
+using MovieStudio.Contacts;
 using MovieStudio.Core.Users;
 
 namespace MovieStudio.Core.Movies;
 
 public class Movie: IHasUpdateTime
 {
-    public Movie(int directorId, string title, string description, decimal budget, Genre[] genres, TimeSpan duration, DateTime startFilming, DateTime endFilming)
+    public Movie(int directorId, string title, string description, decimal budget, MovieGenre[] genres, TimeSpan duration, DateTime startFilming, DateTime endFilming)
     {
         DirectorId = directorId;
         Title = title;
@@ -27,14 +28,14 @@ public class Movie: IHasUpdateTime
     
     public MovieStatus Status { get; private set; }
     
-    public ICollection<MovieOffer> Offers { get; private set; }
+    public Collection<MovieOffer> Offers { get; private set; }
     
-    public ICollection<Genre> Genres { get; private set; }
+    public ICollection<MovieGenre> Genres { get; private set; }
     
     public DateTime? Updated { get; set; }
     
     public int DirectorId { get; set; }
-    public MovieDirector Director { get; private set; }
+    public Director Director { get; private set; }
 
     public IEnumerable<Actor> ApprovedActors => Offers.Where(e => e.Status == OfferStatus.Approved).Select(e => e.Actor).ToList();
     public decimal TotalSpentForCompensations => ApprovedActors.Sum(e => e.Compensation);

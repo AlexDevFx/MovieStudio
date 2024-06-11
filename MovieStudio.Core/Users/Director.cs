@@ -2,7 +2,7 @@
 
 namespace MovieStudio.Core.Users;
 
-public class MovieDirector
+public class Director
 {
     public int Id { get; set; }
     public User User { get; private set; }
